@@ -1,0 +1,755 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>小桃的个人主页</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* 全局样式 - 定义马卡龙色系变量 */
+        :root {
+            --macaron-blue: #8FB9E0;    /* 马卡龙蓝（主） */
+            --macaron-pink: #F0B8C0;   /* 马卡龙粉 */
+            --macaron-green: #B8E0C8;  /* 马卡龙绿 */
+            --macaron-yellow: #F9E4B7; /* 马卡龙黄 */
+            --macaron-purple: #D4B8E0; /* 马卡龙紫 */
+            --light-gray: #F8F9FA;     /* 基础浅灰 */
+            --text-main: #555555;      /* 文字主色 */
+            --text-light: #777777;     /* 浅文字色 */
+        }
+
+        /* 全局重置与基础样式 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: "Microsoft YaHei", "PingFang SC", "Helvetica Neue", sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth; /* 平滑滚动 */
+        }
+
+        body {
+            background-color: var(--light-gray);
+            color: var(--text-main);
+            line-height: 1.8;
+            padding: 0 20px;
+            max-width: 1000px;
+            margin: 0 auto;
+            /* 轻微纹理背景，增加质感但不花哨 */
+            background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%239C92AC' fill-opacity='0.03' fill-rule='evenodd'/%3E%3C/svg%3E");
+        }
+
+        /* 顶部导航栏 */
+        .header-nav {
+            background-color: white;
+            padding: 15px 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            margin: 20px 0;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            position: sticky;
+            top: 0;
+            z-index: 999;
+            border-top: 3px solid var(--macaron-blue);
+        }
+
+        .header-nav a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            padding: 5px 10px;
+            border-radius: 6px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        .header-nav a:hover {
+            color: var(--macaron-pink);
+            background-color: rgba(240, 184, 192, 0.1);
+        }
+
+        .header-nav a i {
+            font-size: 0.9rem;
+            color: var(--macaron-blue);
+        }
+
+        /* 标题恢复简约样式 */
+        h1 {
+            color: #4A6FA5;
+            text-align: center;
+            margin: 40px 0 20px;
+            font-size: 2.2rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        h2 {
+            color: var(--text-main);
+            margin: 0 0 20px;
+            padding-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-weight: 500;
+            position: relative;
+            font-size: 1.3rem;
+            border-bottom: 1px solid #E5E9F0;
+        }
+
+        h2 i {
+            color: var(--macaron-blue);
+            font-size: 1.1rem;
+            opacity: 0.8;
+            transition: color 0.3s ease;
+        }
+
+        .card:hover h2 i {
+            color: var(--macaron-pink);
+        }
+
+        /* 卡片样式 - 增加小图案装饰 */
+        .card {
+            background-color: white;
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+            border: 1px solid #F0F2F5;
+            border-top: 3px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* 卡片小图案装饰 - 核心新增 */
+        /* 角落小图案 */
+        .card::before {
+            content: "";
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            width: 50px;
+            height: 50px;
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        /* 不同卡片对应不同小图案 */
+        .card-about::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238FB9E0'%3E%3Cpath d='M12 12c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm0 2c-2.67 0-8 1.34-8 4v2h16v-2c0-2.66-5.33-4-8-4z'/%3E%3C/svg%3E");
+        }
+
+        .card-hobby::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F0B8C0'%3E%3Cpath d='M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z'/%3E%3C/svg%3E");
+        }
+
+        .card-daily::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23B8E0C8'%3E%3Cpath d='M18 14h-6.5l2-2H18v2zM3 13h8v2H3zm0-6h8v2H3zm10 0v8l6-4z'/%3E%3C/svg%3E");
+        }
+
+        .card-plan::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F9E4B7'%3E%3Cpath d='M14 2H6c-1.1 0-2 .9-2 2v16c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V8l-6-6zM6 20V4h7v5h5v11H6z'/%3E%3C/svg%3E");
+        }
+
+        .card-website::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D4B8E0'%3E%3Cpath d='M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zM9 17H7v-7h2v7zm4 0h-2V7h2v10zm4 0h-2v-4h2v4z'/%3E%3C/svg%3E");
+        }
+
+        .card-contact::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%238FB9E0'%3E%3Cpath d='M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z'/%3E%3C/svg%3E");
+        }
+
+        .card-message::before {
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23F0B8C0'%3E%3Cpath d='M20 2H4c-1.1 0-1.99.9-1.99 2L2 22l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z'/%3E%3C/svg%3E");
+        }
+
+        /* 卡片内元素层级 */
+        .card > * {
+            position: relative;
+            z-index: 1;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+
+        /* 不同模块卡片顶部边框色 */
+        .card-about:hover { border-top-color: var(--macaron-blue); }
+        .card-hobby:hover { border-top-color: var(--macaron-pink); }
+        .card-daily:hover { border-top-color: var(--macaron-green); }
+        .card-plan:hover { border-top-color: var(--macaron-yellow); }
+        .card-website:hover { border-top-color: var(--macaron-purple); }
+        .card-contact:hover { border-top-color: var(--macaron-blue); }
+        .card-message:hover { border-top-color: var(--macaron-pink); }
+
+        /* 文本样式 */
+        p {
+            margin: 0 0 15px;
+            font-size: 1rem;
+            color: var(--text-main);
+            line-height: 1.8;
+        }
+
+        /* 列表样式 - 小图案点缀 */
+        ul, ol {
+            margin: 0 0 15px 30px;
+            padding: 0;
+        }
+
+        li {
+            margin: 0 0 10px;
+            padding-left: 10px;
+            color: var(--text-main);
+            position: relative;
+            font-size: 0.95rem;
+        }
+
+        /* 无序列表 - 马卡龙色圆点 */
+        ul li::before {
+            content: "•";
+            color: var(--macaron-blue);
+            position: absolute;
+            left: -18px;
+            font-size: 1.4rem;
+            top: -2px;
+        }
+
+        /* 有序列表 - 马卡龙色圆形序号 */
+        ol {
+            counter-reset: list-counter;
+            list-style: none;
+        }
+
+        ol li::before {
+            content: counter(list-counter);
+            counter-increment: list-counter;
+            color: white;
+            background-color: var(--macaron-blue);
+            width: 22px;
+            height: 22px;
+            border-radius: 50%;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            position: absolute;
+            left: -30px;
+            top: 2px;
+        }
+
+        /* 链接样式 */
+        a {
+            color: var(--macaron-blue);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border-bottom: 1px solid transparent;
+        }
+
+        a:hover {
+            color: var(--macaron-pink);
+            border-bottom: 1px solid var(--macaron-pink);
+        }
+
+        /* 表格样式 */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 0 0 15px;
+            border-radius: 6px;
+            overflow: hidden;
+            background-color: white;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.03);
+        }
+
+        th, td {
+            padding: 14px 18px;
+            text-align: left;
+            border-bottom: 1px solid #F0F2F5;
+            font-size: 0.95rem;
+        }
+
+        th {
+            background-color: var(--light-gray);
+            font-weight: 500;
+            color: #4A6FA5;
+        }
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+
+        tr:hover {
+            background-color: rgba(143, 185, 224, 0.05);
+            transform: translateX(2px);
+            transition: transform 0.2s ease;
+        }
+
+        /* 表单样式 */
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        label {
+            color: var(--text-main);
+            font-size: 0.95rem;
+            font-weight: 500;
+            margin-bottom: -10px;
+        }
+
+        input, textarea {
+            padding: 14px 18px;
+            border: 1px solid #E5E9F0;
+            border-radius: 6px;
+            font-size: 0.95rem;
+            background-color: white;
+            color: var(--text-main);
+            outline: none;
+            transition: all 0.3s ease;
+            resize: none;
+        }
+
+        input::placeholder, textarea::placeholder {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        input:focus, textarea:focus {
+            border-color: var(--macaron-blue);
+            box-shadow: 0 0 0 2px rgba(143, 185, 224, 0.1);
+            transform: translateY(-1px);
+        }
+
+        /* 按钮样式 */
+        button {
+            background: linear-gradient(90deg, var(--macaron-blue), var(--macaron-pink));
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 14px 30px;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            align-self: flex-start;
+            position: relative;
+            overflow: hidden;
+            font-weight: 500;
+        }
+
+        button::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.8s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(143, 185, 224, 0.2);
+        }
+
+        button:hover::after {
+            left: 100%;
+        }
+
+        /* 页脚样式 */
+        footer {
+            text-align: center;
+            margin: 50px 0 30px;
+            padding: 30px;
+            background-color: white;
+            border-radius: 8px;
+            color: var(--text-main);
+            font-size: 0.95rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-top: 3px solid var(--macaron-purple);
+            position: relative;
+        }
+
+        /* 页脚小图案装饰 */
+        footer::before {
+            content: "";
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 60px;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23D4B8E0'%3E%3Cpath d='M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z'/%3E%3C/svg%3E");
+            background-size: contain;
+            background-repeat: no-repeat;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        footer p {
+            margin: 5px 0;
+            color: var(--text-light);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* 图片样式 */
+        .avatar {
+            text-align: center;
+            margin: 20px 0 30px;
+            position: relative;
+        }
+
+        /* 图片下方小装饰 */
+        .avatar::after {
+            content: "";
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 8px;
+            background: linear-gradient(90deg, var(--macaron-blue), var(--macaron-pink));
+            border-radius: 4px;
+            opacity: 0.5;
+        }
+
+        .avatar img {
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            max-width: 100%;
+            height: auto;
+            max-height: 400px;
+            border: 4px solid white;
+            outline: 1px solid var(--macaron-blue);
+            transition: all 0.3s ease;
+        }
+
+        .avatar img:hover {
+            outline-color: var(--macaron-pink);
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 标签样式 - 马卡龙色+小交互 */
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin: 0 0 10px;
+        }
+
+        .tag {
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .tag:nth-child(1) { background: var(--macaron-blue); color: white; }
+        .tag:nth-child(2) { background: var(--macaron-pink); color: white; }
+        .tag:nth-child(3) { background: var(--macaron-green); color: white; }
+        .tag:nth-child(4) { background: var(--macaron-yellow); color: var(--text-main); }
+        .tag:nth-child(5) { background: var(--macaron-purple); color: white; }
+        .tag:nth-child(6) { background: var(--light-gray); color: var(--text-main); border-color: var(--macaron-blue); }
+
+        .tag:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 返回顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background-color: var(--macaron-blue);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            opacity: 0;
+            visibility: hidden;
+            z-index: 999;
+        }
+
+        .back-to-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .back-to-top:hover {
+            background-color: var(--macaron-pink);
+            transform: translateY(-3px);
+        }
+
+        /* 响应式适配 */
+        @media (max-width: 768px) {
+            body {
+                padding: 0 15px;
+            }
+
+            .card {
+                padding: 20px;
+            }
+
+            .header-nav {
+                gap: 15px;
+                padding: 10px 15px;
+            }
+
+            .header-nav a {
+                font-size: 0.85rem;
+            }
+
+            th, td {
+                padding: 10px 12px;
+            }
+
+            .back-to-top {
+                bottom: 20px;
+                right: 20px;
+                width: 40px;
+                height: 40px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .tags {
+                gap: 8px;
+            }
+
+            .tag {
+                padding: 6px 14px;
+                font-size: 0.8rem;
+            }
+
+            button {
+                width: 100%;
+                align-self: auto;
+            }
+        }
+    </style>
+</head>
+<body>
+<!-- 顶部导航栏 -->
+<nav class="header-nav">
+    <a href="#about"><i class="fas fa-user"></i> 关于我</a>
+    <a href="#hobby"><i class="fas fa-star"></i> 我的爱好</a>
+    <a href="#daily"><i class="fas fa-coffee"></i> 日常</a>
+    <a href="#plan"><i class="fas fa-book"></i> 学习清单</a>
+    <a href="#website"><i class="fas fa-globe"></i> 常逛网站</a>
+    <a href="#contact"><i class="fas fa-envelope"></i> 联系方式</a>
+    <a href="#message"><i class="fas fa-paper-plane"></i> 留言板</a>
+</nav>
+
+<!-- 页面头部（恢复简约样式） -->
+<h1>小桃的个人主页</h1>
+
+<!-- 图片区域（增加小装饰） -->
+<div class="avatar">
+    <img src="https://pic.nximg.cn/file/20220309/31556825_170851949103_2.jpg" alt="个人照片" width="400">
+</div>
+
+<!-- 关于我模块（带人物小图案） -->
+<div id="about" class="card card-about">
+    <h2><i class="fas fa-user"></i> 关于我</h2>
+    <p>哈喽～我是小桃，一名大三学生。</p>
+    <p>今年22岁，喜欢记录生活中的美好。</p>
+    <p>我的目标：好好学习 天天向上。</p>
+</div>
+
+<!-- 我的爱好模块（带星星小图案） -->
+<div id="hobby" class="card card-hobby">
+    <h2><i class="fas fa-star"></i> 小桃的爱好</h2>
+    <div class="tags">
+        <span class="tag">手绘插画</span>
+        <span class="tag">PS修图</span>
+        <span class="tag">可爱字体设计</span>
+        <span class="tag">手账制作</span>
+        <span class="tag">简单网页制作</span>
+        <span class="tag">摄影</span>
+    </div>
+</div>
+
+<!-- 我的日常模块（带日常小图案） -->
+<div id="daily" class="card card-daily">
+    <h2><i class="fas fa-coffee"></i> 小桃的日常</h2>
+    <ul>
+        <li>喝奶茶</li>
+        <li>偶尔摸鱼</li>
+        <li>听歌，喜欢治愈系音乐</li>
+        <li>撸学校里的流浪小猫咪</li>
+        <li>收集玩偶</li>
+        <li>吃饭</li>
+    </ul>
+</div>
+
+<!-- 学习清单模块（带书本小图案） -->
+<div id="plan" class="card card-plan">
+    <h2><i class="fas fa-book"></i> 小桃的学习清单</h2>
+    <ol>
+        <li>写出开题报告，完成毕业论文的前期准备</li>
+        <li>完成课程PPT</li>
+        <li>用手账记录生活，每周更新一次</li>
+        <li>坚持运动</li>
+        <li>拍照</li>
+    </ol>
+</div>
+
+<!-- 常逛网站模块（带地球小图案） -->
+<div id="website" class="card card-website">
+    <h2><i class="fas fa-globe"></i> 常逛的网站</h2>
+    <ul>
+        <li><a href="https://www.douyin.com" target="_blank">抖音 - 记录生活，发现有趣的人和事✨</a></li>
+        <li><a href="https://www.bilibili.com" target="_blank">哔哩哔哩 - 看教程，学习各种新技能🎬</a></li>
+        <li><a href="https://www.artstation.com" target="_blank">ArtStation - 看插画作品，获取设计灵感🎨</a></li>
+        <li><a href="https://www.douban.com" target="_blank">豆瓣 - 找同好，聊可爱的东西和生活💬</a></li>
+    </ul>
+</div>
+
+<!-- 联系方式模块（带邮件小图案） -->
+<div id="contact" class="card card-contact">
+    <h2><i class="fas fa-envelope"></i> 联系方式</h2>
+    <table>
+        <tr>
+            <th>类型</th>
+            <th>账号/信息</th>
+        </tr>
+        <tr>
+            <td>邮箱</td>
+            <td>xiaotao@qq.com</td>
+        </tr>
+        <tr>
+            <td>微信</td>
+            <td>taotao</td>
+        </tr>
+        <tr>
+            <td>小红书</td>
+            <td>小桃的日常</td>
+        </tr>
+        <tr>
+            <td>地址</td>
+            <td>重庆</td>
+        </tr>
+    </table>
+</div>
+
+<!-- 留言板模块（带消息小图案） -->
+<div id="message" class="card card-message">
+    <h2><i class="fas fa-paper-plane"></i> 留言板</h2>
+    <form>
+        <label for="username">你的名字</label>
+        <input type="text" id="username" name="username" required placeholder="请输入你的名字～">
+
+        <label for="email">你的邮箱</label>
+        <input type="email" id="email" name="email" required placeholder="请输入你的邮箱～">
+
+        <label for="message">留言内容</label>
+        <textarea id="message" name="message" rows="5" cols="30" required placeholder="打个招呼😜"></textarea>
+
+        <button type="submit">发送留言 💌</button>
+    </form>
+</div>
+
+<!-- 页脚（带爱心小图案） -->
+<footer>
+    <p>小桃的个人主页 © 2026</p>
+    <p>最后更新：2026年1月 | 愿我们都能天天开心 💖</p>
+</footer>
+
+<!-- 返回顶部按钮 -->
+<div class="back-to-top" id="backToTop">
+    <i class="fas fa-arrow-up"></i>
+</div>
+
+<script>
+    // 标签点击交互
+    const tags = document.querySelectorAll('.tag');
+    tags.forEach(tag => {
+        tag.addEventListener('click', () => {
+            const originalBg = tag.style.backgroundColor || getComputedStyle(tag).backgroundColor;
+            const originalColor = tag.style.color || getComputedStyle(tag).color;
+            const originalBorder = tag.style.borderColor || getComputedStyle(tag).borderColor;
+
+            tag.style.backgroundColor = 'white';
+            tag.style.color = var(--text-main);
+            tag.style.borderColor = originalBg;
+
+            setTimeout(() => {
+                tag.style.backgroundColor = originalBg;
+                tag.style.color = originalColor;
+                tag.style.borderColor = originalBorder;
+            }, 1000);
+        });
+    });
+
+    // 返回顶部按钮逻辑
+    const backToTopBtn = document.getElementById('backToTop');
+
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            backToTopBtn.classList.add('show');
+        } else {
+            backToTopBtn.classList.remove('show');
+        }
+    });
+
+    backToTopBtn.addEventListener('click', () => {
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth'
+        });
+    });
+
+    // 表单提交反馈
+    document.querySelector('form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        alert('留言发送成功！谢谢你的留言～');
+        e.target.reset();
+    });
+
+    // 卡片渐入动画
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.style.opacity = 0;
+                entry.target.style.transform = 'translateY(20px)';
+                entry.target.style.transition = 'opacity 0.8s ease, transform 0.8s ease';
+
+                setTimeout(() => {
+                    entry.target.style.opacity = 1;
+                    entry.target.style.transform = 'translateY(0)';
+                }, 100);
+            }
+        });
+    }, { threshold: 0.1 });
+
+    cards.forEach(card => {
+        observer.observe(card);
+    });
+</script>
+</body>
+</html>
